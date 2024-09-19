@@ -15,3 +15,18 @@ To set up the project locally, follow these steps:
    ```bash
    git clone https://github.com/yourusername/music-recommendation-system.git
    cd music-recommendation-system
+2. **Create a Virtual Environment**
+   ```bash
+   python -m venv venv
+3. **Activate the Virtual Environment**
+   ```bash
+   venv\Scripts\activate
+4. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+5. **Set Up the Database**
+   ```bash
+   flask db upgrade
+6. **Run the Application**
+   ```bash
+   flask run
