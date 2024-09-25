@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Home Page</title>
+    </style>
+</head>
+<body class="bg-black">
+<nav class="fixed top-0 z-50 w-full bg-black border-b border-gray-500 dark:bg-black dark:border-gray-700">
+    <div class="px-3 py-1 lg:px-5 lg:pl-3">
+      <div class="flex items-center justify-center">
+        <div class="flex items-center justify-start rtl:justify-end">
+           <a href="#" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1 text-[#6C63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            <span class="font-bold text-white">GrooveGenie</span>
+          </a>
+        </div>
+        
+    </div>
+  </nav>
+  <div class="flex sm:flex-row flex-col h-screen justify-center">
+  <div class="hidden basis-1/4 border-r border-gray-800 sm:pt-24 pt-4 sm:order-first order-2">
+   <div class="flex items-center justify-center mb-5">
+      <h1 class="text-white text-3xl">Liked Songs</h1>
+     </div>
+  </div>
+  <div class="basis-1/2 p-4 mt-5">
+     <div class="p-4 border-2 border-none border-solid rounded-lg dark:border-gray-700 mt-14">
+      <form class="max-w-md mx-auto" action="/recommend" method="get">   
+         <p class="text-gray-200 text-2xl mb-4 text-center font-bold mb-2">Discover Songs Tailored to your taste</p>
+         <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+         <div class="relative">
+             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                 </svg>
+             </div>
+             <input type="search" id="searchInput" name="song_name" class="block w-full p-4 ps-10 text-sm text-gray-200 border border-gray-600 rounded-lg bg-gray-700 focus:ring-blue-700 focus:border-[#6C63FF] dark:bg-gray-700 dark:border-[#6C63FF] dark:placeholder-gray-400 dark:text-white" placeholder="Search " value="" required />
+             <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-[#6C63FF] hover:bg-[#6C63FF] focus:ring-4 focus:outline-none focus:ring-[#6C63FF] font-medium rounded-lg text-sm px-4 py-2 dark:bg-[#6C63FF] dark:hover:bg-[#6C63FF] dark:focus:ring-[#6C63FF]">Get Recommendation</button>
+         </div>
+         
+         <div class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 w-96">
+            <div id="results" class="absolute z-1 bg-black w-96 text-gray-200 cursor-pointer"></div>
+        </div>
+         
+     </form>
+
+
+     
+        
+        </div>
+        
+
+      
+
+        {% if recommendations %}
+         <div class="flex items-center justify-center mb-5">
+            <h1 class="text-white text-3xl">Recommended Songs</h1>
+         </div>
+         <div class="sm:grid sm:grid-cols-4 flex flex-row sm:gap-1 my-4 justify-center items-center">
+         {% endif %}  
+         {% for song in recommendations %}
+            <div class="w-full max-w-60 bg-white px-5 border-none border-gray-200 rounded-lg shadow dark:bg-black dark:border-none">
+               <a href="#">
+                  <img class="p-0 rounded-t-lg h-28 w-full" src="{{ song['album_cover_url'] }}" alt="product image" />
+               </a>
+               <div class="flex justify-between px-5 pb-5">
+                  <a href="#">
+                     <h5 class="text-autotext-gray-900 dark:text-white">{{ song['track'] }}</h5>
+                     <span class="text-1xl font-bold text-gray-900 dark:text-white">{{ song['artist'] }}</span>
+                  </a>
+                  <div class="float-right">
+                     <i onclick="myFunction(this, 'like-modal', 'alert')" class="fa fa fa-heart-o text-red-500 cursor-pointer"></i>
+                  </div>
+                  
+                  
+               </div>
+            </div>
+         {% endfor %}
+
+        <!--<div class="w-full max-w-60 bg-white px-5 border-none border-gray-200 rounded-lg shadow dark:bg-black dark:border-none">
+            <a href="#">
+               <img class="p-0 rounded-t-lg h-28 w-full" src="https://i.scdn.co/image/ab6761610000f17814fc1f477592ca9ab6ded961" alt="product image" />
+            </a>
+            <div class="flex justify-between px-5 pb-5">
+               <a href="#">
+                  <h5 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Jiggy Forever</h5>
+                  <span class="text-1xl font-bold text-gray-900 dark:text-white">Young John</span>
+               </a>
+               <div class="float-right">
+                  <i onclick="myFunction(this, 'like-modal', 'alert')" class="fa fa fa-heart-o text-red-500 cursor-pointer"></i>
+               </div>
+               
+               
+            </div>
+         </div>-->
+     </div>
+     
+   </div>
+   </div>
+        <div class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 bg-[#374151e3] flex justify-center items-center md:inset-0 h-[calc(100%-1rem)] max-h-full" id="like-modal">
+         <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+               <div class="flex items-center justify-between w-full p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                  <div></div>
+                  <h3 class="text-xl font-semibold text-gray-200">
+                     Welcome Back!
+                  </h3>
+                  <button type="button" class="cursor-pointer text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-15 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="like-modal">
+                     <span class="text-2xl">x</span>
+                     <span class="sr-only">Close</span>
+                  </button>
+               </div>
+               <!-- Modal body -->
+               <div class="p-4 md:p-5">
+                  <form action="#" class="space-y-4">
+                     <div>
+                        <label for="email" class="block mb-2 pl-2 text-sm font-medium text-gray-900 dark:text-white" >Email</label>
+                        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@email.com">
+                     </div>
+                     <div>
+                        <label for="password" class="block mb-2 pl-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                        <input type="password" name="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="*********">
+                     </div>
+                     <div class="flex justify-between">
+                        <div class="flex items-start">
+                           <div class="flex items-center h-5">
+                              <input type="checkbox" name="" id="remember" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800">
+                           </div>
+                           <label for="remember" class="ms-2 text-sm font-medium text-gray-200 dark-gray-300">Remember me</label>
+                        </div>
+                        <a href="" class="text-sm text-blue-700 hover:underline dark:text-blue-500"></a>
+                     </div>
+                     <button type="submit" class="w-full text-white bg-[#6C63FF] hover:bg-[#6C63FF] focus:ring-4 focus:ring-[#6C63FF] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#6C63FF] dark:hover:bg-[#6C63FF] dark:focus:ring-[#6C63FF]">Sign In</button>
+                     <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                        Not registered? <span id="reg" class="text-blue-700">Create account</span>
+                     </div>
+                  </form>
+
+               </div>
+            </div>
+
+         </div>
+        </div>
+
+        
+         
+        
+         
+         <div class="hidden fixed bottom-0 right-0 w-[300px]" id="alert">
+            <div class="relative p-4 w-full max-w-md max-h-full">
+               <div class="hidden flex items-center p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-blue-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800" role="alert">
+                  <div class="ms-3 text-sm font-medium">
+                     Error message
+                  </div>
+                  <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700">
+                     <span class="sr-only">Dismiss</span>
+                     <span class="text-2xl">x</span>
+                  </button>
+               </div>
+               <div class="flex items-center p-4 mb-4 text-red-800 border-t-4 border-green-300 bg-blue-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800" role="alert">
+                  <div class="ms-3 text-sm font-medium">
+                     Added to your Liked songs
+                  </div>
+                  <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700">
+                     <span class="sr-only">Dismiss</span>
+                     <span class="text-2xl">x</span>
+                  </button>
+               </div>
+            </div>
+         </div>
+        
+         
+
+  <script>
+   function myFunction(element, likeMod) {
+      if (element.classList.contains('fa-heart-o')) {
+         var alerts = document.getElementById('alert')
+         element.classList.remove('fa-heart-o');
+         element.classList.add('fa-heart');
+         alerts.classList.remove('hidden')
+      } else {
+         element.classList.remove('fa-heart');
+         element.classList.add('fa-heart-o');
+      }
+}
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+  <script>
+   function searchSongs(query) {
+       fetch(`/search?q=${query}`)
+           .then(response => response.json())
+           .then(data => {
+               const resultsContainer = document.getElementById('results');
+               resultsContainer.innerHTML = ''; // Clear previous results
+
+               if (data.length > 0) {
+                   data.forEach(song => {
+                       const songDiv = document.createElement('div');
+                       songDiv.className = 'song';
+                       songDiv.textContent = `${song.track} by ${song.artist}`;
+                       const songTitle = `${song.track}`;
+                       songDiv.onclick = () => {
+                           document.getElementById('searchInput').value = `${song.track} by ${song.artist}`;
+                           resultsContainer.style.display = 'none'; // Hide dropdown after selection
+                       };
+                       resultsContainer.appendChild(songDiv);
+                   });
+                   resultsContainer.style.display = 'block'; // Show dropdown
+               } else {
+                   resultsContainer.style.display = 'none'; // Hide dropdown if no results
+               }
+           })
+           .catch(error => console.error('Error fetching data:', error));
+   }
+
+   // Event listener for the search input
+   document.addEventListener('DOMContentLoaded', () => {
+       const searchInput = document.getElementById('searchInput');
+       searchInput.addEventListener('input', (event) => {
+           searchSongs(event.target.value);
+       });
+       searchInput.addEventListener('blur', () => {
+           // Hide dropdown when input loses focus
+           setTimeout(() => {
+               document.getElementById('results').style.display = 'none';
+           }, 100); // Delay to allow click event on dropdown
+       });
+   });
+</script>
+</body>
+</html>
+hen input loses focus
+           setTimeout(() => {
+               document.getElementById('results').style.display = 'none';
+           }, 100); // Delay to allow click event on dropdown
+       });
+   });
+</script>
+</body>
+</html>

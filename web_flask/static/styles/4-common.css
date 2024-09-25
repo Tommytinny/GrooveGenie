@@ -1,0 +1,40 @@
+body {
+	margin:0px;
+	padding:0px;
+	background-color: black;
+	color: #9ca3af;
+	font-size: 14px;
+	font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#root {
+	background-color: black;
+}
+.container {
+	display: flex;
+	justify-content: center;
+	padding: 10px 50px 30px;
+	background-image: url("../images/bg.jpg");
+	background-size: cover;
+	background-position: center bottom;
+	background-repeat: no-repeat;
+	height: 50vh; 
+	--tw-border-opacity: 1;
+	border: none;
+	border-bottom: 1px solid rgb(72 73 74 / var(--tw-border-opacity));
+}
+
+
+
+
+
+
+rgb(72 73 74 / var(--tw-border-opacity));
+}
+
+
+
+
+
+
+
+

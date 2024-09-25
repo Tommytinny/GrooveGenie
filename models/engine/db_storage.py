@@ -5,8 +5,8 @@ Database Storage class
 import models
 from models.base_model import Base
 from models.user import User
-from models.play_list import Playlist
 from models.song import Song
+from models.play_list import Playlist
 from models.user_song_interact import UserSongInteraction
 import sqlalchemy
 from sqlalchemy import create_engine
@@ -50,6 +50,10 @@ class DBStorage:
                         key = obj.__class__.__name__ + '.' + obj.id
                         new_dict[key] = obj
         return (new_dict)
+    
+    def get(self, obj):
+        """query an object on current database session"""
+        
 
     def new(self, obj):
         """add the object to the current database session"""

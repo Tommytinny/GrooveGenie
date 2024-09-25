@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-
+from datetime import datetime
 from models.base_model import BaseModel, Base
 import sqlalchemy
-from sqlalchemy import Column, String, DateTime, ForeignKey, Integer
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String, DateTime, ForeignKey
 
 class UserSongInteraction(BaseModel, Base):
     """ UserSongInteraction Details
@@ -17,9 +16,7 @@ class UserSongInteraction(BaseModel, Base):
     user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
     song_id = Column(String(60), ForeignKey('songs.id'), nullable=False)
 
-    liked = Column(Integer, nullable=True)
-    playCount = Column(Integer, nullable=True)
-    lastPlayedDate = Column(DateTime, nullable=True)
+    liked = Column(DateTime, default=datetime.utcnow)
 
     def __init__(self, *args, **kwargs):
         """initializes user"""

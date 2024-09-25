@@ -2,8 +2,7 @@
 
 from models.base_model import BaseModel, Base
 import sqlalchemy
-from sqlalchemy import Column, String, DateTime, ForeignKey, Float, Integer, Text
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String, ForeignKey
 
 class Playlist(BaseModel, Base):
     """ Playlist Details

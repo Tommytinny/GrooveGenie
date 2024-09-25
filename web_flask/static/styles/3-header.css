@@ -1,0 +1,38 @@
+header {
+	position: sticky;
+	top: 0px;
+	z-index: 999;
+	background-color: black;
+	height: 70px;
+	--tw-border-opacity: 1;
+	border: none;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#header_logo {
+	height: 100%;
+	width: 142px;
+	display: flex;
+	justify-content: center;
+	font-size: larger;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+er;
+}
+background-image: url("../images/log.png");
+ion: center;
+}
+background-image: url("../images/log.png");
+log.png");
+ion: center;
+}
+background-image: url("../images/log.png");

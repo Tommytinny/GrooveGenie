@@ -9,8 +9,7 @@ from models.song import Song
 from models.play_list import Playlist
 from models.user_song_interact import UserSongInteraction
 
-classes = {"User": User, "Song": Song, "Playlist": Playlist,
-           "UserSongInteraction": UserSongInteraction}
+classes = {"User": User, "Song": Song, "UserSongInteraction": UserSongInteraction, "Playlist": Playlist}
 
 class GrooveGenie(cmd.Cmd):
     """ implementation of Student Portal class """

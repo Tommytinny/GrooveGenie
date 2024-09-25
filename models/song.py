@@ -2,7 +2,7 @@
 
 from models.base_model import BaseModel, Base
 import sqlalchemy
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer, Float
 from sqlalchemy.orm import relationship
 
 class Song(BaseModel, Base):
@@ -18,12 +18,11 @@ class Song(BaseModel, Base):
 
     title = Column(String(200), nullable=False)
     artist = Column(String(200), nullable=False)
-    album = Column(String(200), nullable=False)
     genre = Column(String(100), nullable=False)
-    releaseYear = Column(Integer)
+    tempo = Column(Float)
+    popularity = Column(Integer)
 
-    userSongInteraction = relationship("UserSongInteraction", backref="song")
-    playlist = relationship("Playlist", backref="song")
+    liked_by_user = relationship("UserSongInteraction", backref="song")
 
     def __init__(self, *args, **kwargs):
         """initializes user"""
